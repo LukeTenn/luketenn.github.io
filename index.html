@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #0e1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #9da7b3;
+      --accent: #58a6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1b2330, var(--bg));
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin: 0;
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 1.2rem auto 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    section {
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #0b0f14;
+      border-radius: 10px;
+      padding: 1.2rem;
+      border: 1px solid #202637;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🌊 Project Title</h1>
+    <p>
+      A small, focused game experiment built to test ideas, visuals,
+      and mechanics without overcomplication.
+    </p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>About</h2>
+      <p>
+        This project explores a compact game concept with an emphasis on
+        <span class="accent">clarity</span>, <span class="accent">personality</span>,
+        and <span class="accent">iterative design</span>.
+      </p>
+      <p>
+        Everything here is intentionally lightweight, flexible, and open
+        to change as ideas evolve.
+      </p>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li>Focused gameplay ideas</li>
+        <li>Expressive visual style</li>
+        <li>Simple systems with room to grow</li>
+        <li>Designed for experimentation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Design Pillars</h2>
+      <div class="grid">
+        <div class="card">
+          <strong>Readability</strong>
+          <p>The player should understand what’s happening at a glance.</p>
+        </div>
+        <div class="card">
+          <strong>Personality</strong>
+          <p>Characters and worlds should feel expressive, not generic.</p>
+        </div>
+        <div class="card">
+          <strong>Restraint</strong>
+          <p>Ideas are kept small enough to actually be finished.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Status</h2>
+      <p>
+        Actively being explored and iterated on. Expect changes,
+        experiments, and occasional redesigns.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    Built with plain HTML & CSS · Hosted on GitHub Pages
+  </footer>
+
+</body>
+</html>

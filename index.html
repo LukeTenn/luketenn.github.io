@@ -49,13 +49,13 @@ header {
 .hero-track {
   display: flex;
   height: 100%;
-  transition: transform 1s ease-in-out;
+  will-change: transform;
 }
 
 .hero-track img {
-  width: 100%;
   height: 100%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 /* ---------- CAROUSEL ---------- */
@@ -236,47 +236,53 @@ footer {
 </footer>
 
 <script>
-/* ---------- INFINITE HERO SLIDER ---------- */
+/* ---------- INFINITE HERO SLIDER (FIXED) ---------- */
+
 const heroTrack = document.getElementById('heroTrack');
-let heroImages = heroTrack.querySelectorAll('img');
+let slides = heroTrack.querySelectorAll('img');
 
-// Clone first slide and append it
-const firstClone = heroImages[0].cloneNode(true);
-heroTrack.appendChild(firstClone);
+// Clone first slide
+const clone = slides[0].cloneNode(true);
+heroTrack.appendChild(clone);
 
-// Update list after cloning
-heroImages = heroTrack.querySelectorAll('img');
+// Update slides list
+slides = heroTrack.querySelectorAll('img');
 
 let index = 0;
-const slideCount = heroImages.length;
 const slideDuration = 5000;
 const transitionTime = 1000;
 
-// Set track width dynamically
-heroTrack.style.width = `${slideCount * 100}%`;
-heroImages.forEach(img => img.style.width = `${100 / slideCount}%`);
+function setHeroSizes() {
+  const heroWidth = document.querySelector('.hero').offsetWidth;
+  heroTrack.style.width = `${slides.length * heroWidth}px`;
 
-function moveToSlide() {
-  heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
-  heroTrack.style.transform = `translateX(-${index * 100}%)`;
+  slides.forEach(slide => {
+    slide.style.width = `${heroWidth}px`;
+  });
+
+  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 }
 
-function nextSlide() {
-  index++;
-  moveToSlide();
+setHeroSizes();
+window.addEventListener('resize', setHeroSizes);
 
-  // If we're on the cloned slide
-  if (index === slideCount - 1) {
+function nextHero() {
+  const heroWidth = document.querySelector('.hero').offsetWidth;
+  index++;
+
+  heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
+  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
+
+  if (index === slides.length - 1) {
     setTimeout(() => {
       heroTrack.style.transition = 'none';
       index = 0;
-      heroTrack.style.transform = `translateX(0%)`;
+      heroTrack.style.transform = 'translateX(0)';
     }, transitionTime);
   }
 }
 
-// Start slider
-setInterval(nextSlide, slideDuration);
+setInterval(nextHero, slideDuration);
 </script>
 
 </body>

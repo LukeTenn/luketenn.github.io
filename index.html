@@ -236,7 +236,7 @@ footer {
 </footer>
 
 <script>
-/* ---------- INFINITE HERO SLIDER (FIXED) ---------- */
+/* ---------- INFINITE HERO SLIDER (FIXED + PAUSE ON HOVER) ---------- */
 
 const heroTrack = document.getElementById('heroTrack');
 let slides = heroTrack.querySelectorAll('img');
@@ -251,6 +251,7 @@ slides = heroTrack.querySelectorAll('img');
 let index = 0;
 const slideDuration = 5000;
 const transitionTime = 1000;
+let slideInterval;
 
 function setHeroSizes() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
@@ -263,9 +264,7 @@ function setHeroSizes() {
   heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 }
 
-setHeroSizes();
-window.addEventListener('resize', setHeroSizes);
-
+// Move to next slide
 function nextHero() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
   index++;
@@ -273,6 +272,7 @@ function nextHero() {
   heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
   heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 
+  // Reset instantly when reaching clone
   if (index === slides.length - 1) {
     setTimeout(() => {
       heroTrack.style.transition = 'none';
@@ -282,7 +282,25 @@ function nextHero() {
   }
 }
 
-setInterval(nextHero, slideDuration);
+// Start auto-slide
+function startSlider() {
+  slideInterval = setInterval(nextHero, slideDuration);
+}
+
+// Stop auto-slide
+function stopSlider() {
+  clearInterval(slideInterval);
+}
+
+// Initialize slider
+setHeroSizes();
+window.addEventListener('resize', setHeroSizes);
+startSlider();
+
+// Pause on hover
+const heroSection = document.querySelector('.hero');
+heroSection.addEventListener('mouseenter', stopSlider);
+heroSection.addEventListener('mouseleave', startSlider);
 </script>
 
 </body>

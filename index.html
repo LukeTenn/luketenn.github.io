@@ -236,24 +236,26 @@ footer {
 </footer>
 
 <script>
-/* ---------- INFINITE HERO SLIDER (FIXED + RELIABLE PAUSE ON HOVER) ---------- */
+/* ---------- INFINITE HERO SLIDER (PAUSE + RESUME EXACTLY) ---------- */
 
 const heroTrack = document.getElementById('heroTrack');
 let slides = heroTrack.querySelectorAll('img');
 
-// Clone first slide
+// Clone first slide for seamless looping
 const clone = slides[0].cloneNode(true);
 heroTrack.appendChild(clone);
 
-// Re-select slides
+// Update slides list
 slides = heroTrack.querySelectorAll('img');
 
 let index = 0;
-const slideDuration = 5000;
-const transitionTime = 1000;
-let slideInterval = null; // track interval
+const slideDuration = 5000; // total time per slide
+const transitionTime = 1000; // transition duration
+let timer = null;
+let startTime = null;
+let remainingTime = slideDuration;
 
-// Set widths
+// Set hero track and slides width
 function setHeroSizes() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
   heroTrack.style.width = `${slides.length * heroWidth}px`;
@@ -271,7 +273,7 @@ function nextHero() {
   heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
   heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 
-  // Reset instantly if we're at the clone
+  // Reset instantly if clone slide
   if (index === slides.length - 1) {
     setTimeout(() => {
       heroTrack.style.transition = 'none';
@@ -279,30 +281,35 @@ function nextHero() {
       heroTrack.style.transform = 'translateX(0)';
     }, transitionTime);
   }
+
+  // Schedule next slide
+  startTime = Date.now();
+  timer = setTimeout(nextHero, slideDuration);
 }
 
-// Start auto-slide safely
-function startSlider() {
-  if (!slideInterval) { // only if not already running
-    slideInterval = setInterval(nextHero, slideDuration);
-  }
+// Start slider
+function startSlider(timeout = remainingTime) {
+  startTime = Date.now();
+  timer = setTimeout(nextHero, timeout);
 }
 
-// Stop auto-slide safely
+// Stop slider
 function stopSlider() {
-  if (slideInterval) {
-    clearInterval(slideInterval);
-    slideInterval = null;
+  if (timer) {
+    clearTimeout(timer);
+    timer = null;
+    const elapsed = Date.now() - startTime;
+    remainingTime = Math.max(slideDuration - elapsed, 0);
   }
 }
 
-// Initialize slider
+// Initialize
 startSlider();
 
 // Pause on hover
 const heroSection = document.querySelector('.hero');
 heroSection.addEventListener('mouseenter', stopSlider);
-heroSection.addEventListener('mouseleave', startSlider);
+heroSection.addEventListener('mouseleave', () => startSlider(remainingTime));
 </script>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About</title>
+<title>Products</title>
 
 <style>
 /* ---------- RESET ---------- */
@@ -25,65 +25,81 @@ header {
 
 .logo img {
   height: 40px;
-  object-fit: contain;
 }
 
-/* ---------- NAV BUTTONS ---------- */
-.nav-buttons button {
+.nav-buttons a {
   background: #ffe6cc;
-  border: none;
   border-radius: 20px;
   padding: 8px 18px;
   margin-left: 10px;
-  cursor: pointer;
   font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 
-/* ---------- HERO SLIDER ---------- */
-.hero {
-  position: relative;
-  height: 503px;
-  overflow: hidden;
+.nav-buttons a.active {
+  background: white;
+  color: #ff1f1f;
 }
 
-.hero-track {
-  display: flex;
-  height: 100%;
-  will-change: transform;
-}
-
-.hero-track img {
-  height: 100%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-/* ---------- CAROUSEL ---------- */
-.carousel-section {
+/* ---------- PAGE ---------- */
+.page {
   padding: 40px 30px;
 }
 
-.carousel-header {
-  text-align: left;
+.section-title {
+  font-size: 28px;
   margin-bottom: 20px;
 }
 
-.carousel-header h2 {
-  font-weight: bold;
-  font-size: 42px;
+/* ---------- STATIC GRID ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
 }
 
-.carousel {
+.product-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- SCROLLING ROW ---------- */
+.scroll-wrapper {
+  position: relative;
+}
+
+.scroll-row {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
 }
 
-.arrow {
-  background: #ddd;
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-row img {
+  min-width: 280px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- ARROWS ---------- */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #eee;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,79 +108,32 @@ header {
   user-select: none;
 }
 
-.carousel-images {
-  display: flex;
-  gap: 15px;
-  flex: 1;
+.scroll-btn.left {
+  left: -20px;
 }
 
-.carousel-images img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  flex: 1;
-}
-
-/* ---------- TEXT GRID ---------- */
-.text-grid {
-  border-top: 1px solid #ffaaaa;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  text-align: center;
-}
-
-.text-grid h3 {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.text-grid p {
-  font-size: 12px;
+.scroll-btn.right {
+  right: -20px;
 }
 
 /* ---------- FOOTER ---------- */
 footer {
   background: #444;
   color: white;
-  text-align: left;
   padding: 15px;
   font-size: 12px;
+  margin-top: 60px;
 }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
-  .carousel-images {
-    overflow-x: auto;
-  }
-
-  .carousel-images img {
-    min-width: 150px;
-  }
-
-  .text-grid {
+  .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 500px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    height: 220px;
-  }
-
-  .text-grid {
+  .product-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -173,143 +142,70 @@ footer {
 
 <body>
 
+<!-- ================= HEADER (SAME AS HOME) ================= -->
 <header>
   <div class="logo">
-    <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+    <a href="index.html">
+      <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+    </a>
   </div>
-  <div class="nav-buttons">
-    <button>Products</button>
-    <button>LukeTenn Gallery</button>
-    <button>Services</button>
-  </div>
+
+  <nav class="nav-buttons">
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="gallery.html">LukeTenn Gallery</a>
+    <a href="services.html">Services</a>
+  </nav>
 </header>
+<!-- ======================================================== -->
 
-<section class="hero">
-  <div class="hero-track" id="heroTrack">
-    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="Hero 1">
-    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="Hero 2">
-    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="Hero 3">
+<div class="page">
+
+  <!-- ---------- SECTION 1 ---------- -->
+  <h2 class="section-title">Featured Products</h2>
+
+  <div class="product-grid">
+    <img src="images/product1.jpg" alt="">
+    <img src="images/product2.jpg" alt="">
+    <img src="images/product3.jpg" alt="">
+    <img src="images/product4.jpg" alt="">
   </div>
-</section>
 
-<section class="carousel-section">
-  <div class="carousel-header">
-    <h2>Discover the World of LukeTenn</h2>
-  </div>
+  <!-- ---------- SECTION 2 ---------- -->
+  <h2 class="section-title">More Products</h2>
 
-  <div class="carousel">
-    <div class="arrow">&#8249;</div>
+  <div class="scroll-wrapper">
+    <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
 
-    <div class="carousel-images">
-      <img src="images/item1.jpg" alt="">
-      <img src="images/item2.jpg" alt="">
-      <img src="images/item3.jpg" alt="">
-      <img src="images/item4.jpg" alt="">
-      <img src="images/item5.jpg" alt="">
+    <div class="scroll-row" id="productScroll">
+      <img src="images/product5.jpg" alt="">
+      <img src="images/product6.jpg" alt="">
+      <img src="images/product7.jpg" alt="">
+      <img src="images/product8.jpg" alt="">
+      <img src="images/product9.jpg" alt="">
     </div>
 
-    <div class="arrow">&#8250;</div>
+    <div class="scroll-btn right" onclick="scrollProducts(1)">&#8250;</div>
   </div>
-</section>
 
-<section class="text-grid">
-  <div>
-    <h3>Contact Us</h3>
-    <p>CONTACT<br>Feedback</p>
-  </div>
-  <div>
-    <h3>Our Partners</h3>
-    <p>Creamy's Wonderland</p>
-  </div>
-  <div>
-    <h3>About Us</h3>
-    <p>MRB</p>
-  </div>
-  <div>
-    <h3>Follow Us</h3>
-    <p>YouTube<br>X (Twitter)</p>
-  </div>
-</section>
+</div>
 
+<!-- ================= FOOTER (SAME AS HOME) ================= -->
 <footer>
   ©2025 LukeTenn. ©2016 – 2025
 </footer>
+<!-- ======================================================== -->
 
 <script>
-/* ---------- INFINITE HERO SLIDER (PAUSE + RESUME EXACTLY) ---------- */
-
-const heroTrack = document.getElementById('heroTrack');
-let slides = heroTrack.querySelectorAll('img');
-
-// Clone first slide for seamless looping
-const clone = slides[0].cloneNode(true);
-heroTrack.appendChild(clone);
-
-// Update slides list
-slides = heroTrack.querySelectorAll('img');
-
-let index = 0;
-const slideDuration = 5000; // total time per slide
-const transitionTime = 1000; // transition duration
-let timer = null;
-let startTime = null;
-let remainingTime = slideDuration;
-
-// Set hero track and slides width
-function setHeroSizes() {
-  const heroWidth = document.querySelector('.hero').offsetWidth;
-  heroTrack.style.width = `${slides.length * heroWidth}px`;
-  slides.forEach(slide => slide.style.width = `${heroWidth}px`);
-  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
+/* ---------- SCROLL BUTTON LOGIC ---------- */
+function scrollProducts(direction) {
+  const row = document.getElementById('productScroll');
+  const scrollAmount = 320;
+  row.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
 }
-
-setHeroSizes();
-window.addEventListener('resize', setHeroSizes);
-
-// Move to next slide
-function nextHero() {
-  const heroWidth = document.querySelector('.hero').offsetWidth;
-  index++;
-  heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
-  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
-
-  // Reset instantly if clone slide
-  if (index === slides.length - 1) {
-    setTimeout(() => {
-      heroTrack.style.transition = 'none';
-      index = 0;
-      heroTrack.style.transform = 'translateX(0)';
-    }, transitionTime);
-  }
-
-  // Schedule next slide
-  startTime = Date.now();
-  timer = setTimeout(nextHero, slideDuration);
-}
-
-// Start slider
-function startSlider(timeout = remainingTime) {
-  startTime = Date.now();
-  timer = setTimeout(nextHero, timeout);
-}
-
-// Stop slider
-function stopSlider() {
-  if (timer) {
-    clearTimeout(timer);
-    timer = null;
-    const elapsed = Date.now() - startTime;
-    remainingTime = Math.max(slideDuration - elapsed, 0);
-  }
-}
-
-// Initialize
-startSlider();
-
-// Pause on hover
-const heroSection = document.querySelector('.hero');
-heroSection.addEventListener('mouseenter', stopSlider);
-heroSection.addEventListener('mouseleave', () => startSlider(remainingTime));
 </script>
 
 </body>

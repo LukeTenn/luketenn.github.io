@@ -124,15 +124,44 @@ footer {
   margin-top: 60px;
 }
 
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
 .footer-divider {
   height: 1px;
   background: #ffaaaa;
-  margin: 20px 0 40px 0;
+  margin: 25px 0 45px 0;
 }
 
-.footer-content {
-  padding: 15px;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   text-align: center;
+}
+
+.footer-grid h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-grid p {
+  font-size: 12px;
+}
+
+.footer-bottom {
+  background: #444;
+  color: white;
+}
+
+.footer-bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  font-size: 12px;
 }
 
 /* ---------- RESPONSIVE ---------- */

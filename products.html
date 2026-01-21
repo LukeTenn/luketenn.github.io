@@ -120,9 +120,18 @@ header {
 footer {
   background: #444;
   color: white;
-  padding: 15px;
   font-size: 12px;
   margin-top: 60px;
+}
+
+.footer-divider {
+  height: 4px;
+  background: #ff1f1f;
+}
+
+.footer-content {
+  padding: 15px;
+  text-align: center;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -151,7 +160,6 @@ footer {
   </div>
 
   <nav class="nav-buttons">
-    <a href="index.html">Home</a>
     <a href="products.html" class="active">Products</a>
     <a href="gallery.html">LukeTenn Gallery</a>
     <a href="services.html">Services</a>
@@ -190,11 +198,14 @@ footer {
 
 </div>
 
-<!-- ================= FOOTER (SAME AS HOME) ================= -->
+<!-- ================= FOOTER (RED LINE + EVERYTHING BELOW) ================= -->
 <footer>
-  ©2025 LukeTenn. ©2016 – 2025
+  <div class="footer-divider"></div>
+  <div class="footer-content">
+    ©2025 LukeTenn. ©2016 – 2025
+  </div>
 </footer>
-<!-- ======================================================== -->
+<!-- ====================================================================== -->
 
 <script>
 /* ---------- SCROLL BUTTON LOGIC ---------- */

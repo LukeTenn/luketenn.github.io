@@ -139,10 +139,17 @@ footer {
   font-size: 12px;
 }
 
-/* red divider line */
+/* red divider line (short, centered, unmistakable) */
 .footer-divider {
   height: 1px;
   background: #ffaaaa;
+  width: 100%;
+}
+
+.footer-divider-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 30px;
 }
 
 /* main footer content (white area) */
@@ -260,7 +267,9 @@ footer {
 </section>
 
 <footer>
+  <div class="footer-divider-wrap">
   <div class="footer-divider"></div>
+</div>
 
   <div class="footer-content">
     <div class="footer-grid">

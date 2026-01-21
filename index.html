@@ -28,13 +28,12 @@ header {
   object-fit: contain;
 }
 
-/* ---------- NAV BUTTONS ---------- */
+/* ---------- NAV ---------- */
 .nav-buttons a {
   background: #ffe6cc;
   border-radius: 20px;
   padding: 8px 18px;
   margin-left: 10px;
-  cursor: pointer;
   font-weight: bold;
   text-decoration: none;
   color: black;
@@ -43,6 +42,11 @@ header {
 
 .nav-buttons a:hover {
   background: #ffd4a3;
+}
+
+.nav-buttons a.active {
+  background: white;
+  color: #ff1f1f;
 }
 
 /* ---------- HERO SLIDER ---------- */
@@ -70,12 +74,10 @@ header {
 }
 
 .carousel-header {
-  text-align: left;
   margin-bottom: 20px;
 }
 
 .carousel-header h2 {
-  font-weight: bold;
   font-size: 42px;
 }
 
@@ -134,7 +136,6 @@ header {
 footer {
   background: #444;
   color: white;
-  text-align: left;
   padding: 15px;
   font-size: 12px;
 }
@@ -179,22 +180,28 @@ footer {
 
 <body>
 
+<!-- ================== SITE HEADER (COPY EXACTLY) ================== -->
 <header>
   <div class="logo">
-    <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+    <a href="index.html">
+      <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+    </a>
   </div>
-  <div class="nav-buttons">
-    <a href="products.html" class="nav-button">Products</a>
-    <button>LukeTenn Gallery</button>
-    <button>Services</button>
-  </div>
+
+  <nav class="nav-buttons">
+    <a href="index.html" class="active">Home</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">LukeTenn Gallery</a>
+    <a href="services.html">Services</a>
+  </nav>
 </header>
+<!-- =============================================================== -->
 
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="Hero 1">
-    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="Hero 2">
-    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="Hero 3">
+    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="">
+    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="">
+    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="">
   </div>
 </section>
 
@@ -205,7 +212,6 @@ footer {
 
   <div class="carousel">
     <div class="arrow">&#8249;</div>
-
     <div class="carousel-images">
       <img src="images/item1.jpg" alt="">
       <img src="images/item2.jpg" alt="">
@@ -213,7 +219,6 @@ footer {
       <img src="images/item4.jpg" alt="">
       <img src="images/item5.jpg" alt="">
     </div>
-
     <div class="arrow">&#8250;</div>
   </div>
 </section>
@@ -221,7 +226,7 @@ footer {
 <section class="text-grid">
   <div>
     <h3>Contact Us</h3>
-    <p>CONTACT<br>Feedback</p>
+    <p>Contact<br>Feedback</p>
   </div>
   <div>
     <h3>Our Partners</h3>
@@ -237,49 +242,44 @@ footer {
   </div>
 </section>
 
+<!-- ================== SITE FOOTER (COPY EXACTLY) ================== -->
 <footer>
   ©2025 LukeTenn. ©2016 – 2025
 </footer>
+<!-- =============================================================== -->
 
 <script>
 /* ---------- INFINITE HERO SLIDER (PAUSE + RESUME EXACTLY) ---------- */
 
 const heroTrack = document.getElementById('heroTrack');
 let slides = heroTrack.querySelectorAll('img');
-
-// Clone first slide for seamless looping
 const clone = slides[0].cloneNode(true);
 heroTrack.appendChild(clone);
-
-// Update slides list
 slides = heroTrack.querySelectorAll('img');
 
 let index = 0;
-const slideDuration = 5000; // total time per slide
-const transitionTime = 1000; // transition duration
+const slideDuration = 5000;
+const transitionTime = 1000;
 let timer = null;
 let startTime = null;
 let remainingTime = slideDuration;
 
-// Set hero track and slides width
 function setHeroSizes() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
   heroTrack.style.width = `${slides.length * heroWidth}px`;
-  slides.forEach(slide => slide.style.width = `${heroWidth}px`);
+  slides.forEach(s => s.style.width = `${heroWidth}px`);
   heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 }
 
 setHeroSizes();
 window.addEventListener('resize', setHeroSizes);
 
-// Move to next slide
 function nextHero() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
   index++;
   heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
   heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
 
-  // Reset instantly if clone slide
   if (index === slides.length - 1) {
     setTimeout(() => {
       heroTrack.style.transition = 'none';
@@ -288,31 +288,22 @@ function nextHero() {
     }, transitionTime);
   }
 
-  // Schedule next slide
   startTime = Date.now();
   timer = setTimeout(nextHero, slideDuration);
 }
 
-// Start slider
-function startSlider(timeout = remainingTime) {
+function startSlider(time = remainingTime) {
   startTime = Date.now();
-  timer = setTimeout(nextHero, timeout);
+  timer = setTimeout(nextHero, time);
 }
 
-// Stop slider
 function stopSlider() {
-  if (timer) {
-    clearTimeout(timer);
-    timer = null;
-    const elapsed = Date.now() - startTime;
-    remainingTime = Math.max(slideDuration - elapsed, 0);
-  }
+  clearTimeout(timer);
+  remainingTime = Math.max(slideDuration - (Date.now() - startTime), 0);
 }
 
-// Initialize
 startSlider();
 
-// Pause on hover
 const heroSection = document.querySelector('.hero');
 heroSection.addEventListener('mouseenter', stopSlider);
 heroSection.addEventListener('mouseleave', () => startSlider(remainingTime));

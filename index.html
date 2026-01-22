@@ -132,32 +132,29 @@ header {
   font-size: 12px;
 }
 
-/* ---------- FOOTER ---------- */
+/* ===================================================================== */
+/* ========================== FOOTER (COPYABLE) ========================= */
+/* ===================================================================== */
+
 footer {
   background: white;
   color: black;
   font-size: 12px;
 }
 
-/* red divider line (short, centered, unmistakable) */
+/* short red divider */
 .footer-divider {
   height: 1px;
   background: #ffaaaa;
   margin: 20px 0 40px 0;
 }
 
-.footer-divider-wrap {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 30px;
-}
-
-/* main footer content (white area) */
+/* main white footer area */
 .footer-content {
   padding: 30px;
 }
 
-/* footer grid (same look as before) */
+/* footer grid */
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -174,15 +171,22 @@ footer {
   font-size: 12px;
 }
 
-/* dark bottom bar ONLY */
+/* bottom gray bar */
 .footer-bottom {
   background: #444;
   color: white;
-  text-align: left;
-  padding: 15px;
   font-size: 12px;
-  margin-top: 30px;
 }
+
+.footer-bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+/* ===================================================================== */
+/* ======================== FOOTER END ================================= */
+/* ===================================================================== */
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
@@ -194,7 +198,8 @@ footer {
     min-width: 150px;
   }
 
-  .text-grid {
+  .text-grid,
+  .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -215,7 +220,8 @@ footer {
     height: 220px;
   }
 
-  .text-grid {
+  .text-grid,
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -224,7 +230,7 @@ footer {
 
 <body>
 
-<!-- ================== SITE HEADER (COPY EXACTLY) ================== -->
+<!-- ================== SITE HEADER ================== -->
 <header>
   <div class="logo">
     <a href="index.html">
@@ -238,7 +244,7 @@ footer {
     <a href="services.html">Services</a>
   </nav>
 </header>
-<!-- =============================================================== -->
+<!-- ================================================ -->
 
 <section class="hero">
   <div class="hero-track" id="heroTrack">
@@ -266,6 +272,9 @@ footer {
   </div>
 </section>
 
+<!-- ===================================================================== -->
+<!-- ============================ FOOTER ================================= -->
+<!-- ===================================================================== -->
 <footer>
   <div class="footer-content">
 
@@ -298,6 +307,7 @@ footer {
     </div>
   </div>
 </footer>
+<!-- ========================== FOOTER END =============================== -->
 
 <script>
 /* ---------- INFINITE HERO SLIDER (PAUSE + RESUME EXACTLY) ---------- */

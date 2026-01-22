@@ -178,7 +178,7 @@ footer {
 
 <body>
 
-<!-- ================= HEADER (SAME AS HOME) ================= -->
+<!-- ================== SITE HEADER ================== -->
 <header>
   <div class="logo">
     <a href="index.html">
@@ -187,45 +187,42 @@ footer {
   </div>
 
   <nav class="nav-buttons">
-    <a href="products.html" class="active">Products</a>
+    <a href="products.html">Products</a>
     <a href="gallery.html">LukeTenn Gallery</a>
     <a href="services.html">Services</a>
   </nav>
 </header>
-<!-- ======================================================== -->
+<!-- ================================================ -->
 
-<div class="page">
+<section class="hero">
+  <div class="hero-track" id="heroTrack">
+    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="">
+    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="">
+    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="">
+  </div>
+</section>
 
-  <!-- ---------- SECTION 1 ---------- -->
-  <h2 class="section-title">Featured Products</h2>
-
-  <div class="product-grid">
-    <img src="images/product1.jpg" alt="">
-    <img src="images/product2.jpg" alt="">
-    <img src="images/product3.jpg" alt="">
-    <img src="images/product4.jpg" alt="">
+<section class="carousel-section">
+  <div class="carousel-header">
+    <h2>Discover the World of LukeTenn</h2>
   </div>
 
-  <!-- ---------- SECTION 2 ---------- -->
-  <h2 class="section-title">More Products</h2>
-
-  <div class="scroll-wrapper">
-    <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
-
-    <div class="scroll-row" id="productScroll">
-      <img src="images/product5.jpg" alt="">
-      <img src="images/product6.jpg" alt="">
-      <img src="images/product7.jpg" alt="">
-      <img src="images/product8.jpg" alt="">
-      <img src="images/product9.jpg" alt="">
+  <div class="carousel">
+    <div class="arrow">&#8249;</div>
+    <div class="carousel-images">
+      <img src="images/item1.jpg" alt="">
+      <img src="images/item2.jpg" alt="">
+      <img src="images/item3.jpg" alt="">
+      <img src="images/item4.jpg" alt="">
+      <img src="images/item5.jpg" alt="">
     </div>
-
-    <div class="scroll-btn right" onclick="scrollProducts(1)">&#8250;</div>
+    <div class="arrow">&#8250;</div>
   </div>
+</section>
 
-</div>
-
-<!-- ================= FOOTER (RED LINE + EVERYTHING BELOW) ================= -->
+<!-- ===================================================================== -->
+<!-- ============================ FOOTER ================================= -->
+<!-- ===================================================================== -->
 <footer>
   <div class="footer-content">
 
@@ -258,7 +255,7 @@ footer {
     </div>
   </div>
 </footer>
-<!-- ====================================================================== -->
+<!-- ========================== FOOTER END =============================== -->
 
 <script>
 /* ---------- SCROLL BUTTON LOGIC ---------- */

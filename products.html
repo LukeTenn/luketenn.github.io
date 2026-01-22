@@ -25,8 +25,10 @@ header {
 
 .logo img {
   height: 40px;
+  object-fit: contain;
 }
 
+/* ---------- NAV ---------- */
 .nav-buttons a {
   background: #ffe6cc;
   border-radius: 20px;
@@ -35,6 +37,11 @@ header {
   font-weight: bold;
   text-decoration: none;
   color: black;
+  display: inline-block;
+}
+
+.nav-buttons a:hover {
+  background: #ffd4a3;
 }
 
 .nav-buttons a.active {
@@ -108,31 +115,32 @@ header {
   user-select: none;
 }
 
-.scroll-btn.left {
-  left: -20px;
-}
+.scroll-btn.left { left: -20px; }
+.scroll-btn.right { right: -20px; }
 
-.scroll-btn.right {
-  right: -20px;
-}
+/* ===================================================================== */
+/* ========================== FOOTER (MATCHES HOME) ===================== */
+/* ===================================================================== */
 
-/* ---------- FOOTER ---------- */
 footer {
-  margin-top: 60px;
+  background: white;
+  color: black;
+  font-size: 12px;
 }
 
-.footer-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 30px;
-}
-
+/* thin red divider */
 .footer-divider {
   height: 1px;
   background: #ffaaaa;
-  margin: 25px 0 45px 0;
+  margin: 20px 0 40px 0;
 }
 
+/* main footer area */
+.footer-content {
+  padding: 30px;
+}
+
+/* footer grid */
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -149,16 +157,17 @@ footer {
   font-size: 12px;
 }
 
+/* bottom gray bar */
 .footer-bottom {
   background: #444;
   color: white;
+  font-size: 12px;
 }
 
 .footer-bottom-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 15px 30px;
-  font-size: 12px;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -166,10 +175,29 @@ footer {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -178,7 +206,7 @@ footer {
 
 <body>
 
-<!-- ================== SITE HEADER ================== -->
+<!-- ================= HEADER ================= -->
 <header>
   <div class="logo">
     <a href="index.html">
@@ -187,42 +215,41 @@ footer {
   </div>
 
   <nav class="nav-buttons">
-    <a href="products.html">Products</a>
+    <a href="products.html" class="active">Products</a>
     <a href="gallery.html">LukeTenn Gallery</a>
     <a href="services.html">Services</a>
   </nav>
 </header>
-<!-- ================================================ -->
+<!-- ========================================= -->
 
-<section class="hero">
-  <div class="hero-track" id="heroTrack">
-    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="">
-    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="">
-    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="">
-  </div>
-</section>
+<div class="page">
 
-<section class="carousel-section">
-  <div class="carousel-header">
-    <h2>Discover the World of LukeTenn</h2>
+  <h2 class="section-title">Featured Products</h2>
+  <div class="product-grid">
+    <img src="images/product1.jpg" alt="">
+    <img src="images/product2.jpg" alt="">
+    <img src="images/product3.jpg" alt="">
+    <img src="images/product4.jpg" alt="">
   </div>
 
-  <div class="carousel">
-    <div class="arrow">&#8249;</div>
-    <div class="carousel-images">
-      <img src="images/item1.jpg" alt="">
-      <img src="images/item2.jpg" alt="">
-      <img src="images/item3.jpg" alt="">
-      <img src="images/item4.jpg" alt="">
-      <img src="images/item5.jpg" alt="">
+  <h2 class="section-title">More Products</h2>
+  <div class="scroll-wrapper">
+    <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
+
+    <div class="scroll-row" id="productScroll">
+      <img src="images/product5.jpg" alt="">
+      <img src="images/product6.jpg" alt="">
+      <img src="images/product7.jpg" alt="">
+      <img src="images/product8.jpg" alt="">
+      <img src="images/product9.jpg" alt="">
     </div>
-    <div class="arrow">&#8250;</div>
-  </div>
-</section>
 
-<!-- ===================================================================== -->
-<!-- ============================ FOOTER ================================= -->
-<!-- ===================================================================== -->
+    <div class="scroll-btn right" onclick="scrollProducts(1)">&#8250;</div>
+  </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
 <footer>
   <div class="footer-content">
 
@@ -255,17 +282,13 @@ footer {
     </div>
   </div>
 </footer>
-<!-- ========================== FOOTER END =============================== -->
+<!-- ========================================= -->
 
 <script>
-/* ---------- SCROLL BUTTON LOGIC ---------- */
 function scrollProducts(direction) {
   const row = document.getElementById('productScroll');
   const scrollAmount = 320;
-  row.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
+  row.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 </script>
 

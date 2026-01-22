@@ -25,10 +25,8 @@ header {
 
 .logo img {
   height: 40px;
-  object-fit: contain;
 }
 
-/* ---------- NAV ---------- */
 .nav-buttons a {
   background: #ffe6cc;
   border-radius: 20px;
@@ -37,11 +35,6 @@ header {
   font-weight: bold;
   text-decoration: none;
   color: black;
-  display: inline-block;
-}
-
-.nav-buttons a:hover {
-  background: #ffd4a3;
 }
 
 .nav-buttons a.active {
@@ -115,29 +108,31 @@ header {
   user-select: none;
 }
 
-.scroll-btn.left { left: -20px; }
-.scroll-btn.right { right: -20px; }
-
-/* ===================================================================== */
-/* ========================== FOOTER (MATCHES HOME) ===================== */
-/* ===================================================================== */
-
-footer {
-  background: white;
-  color: black;
-  font-size: 12px;
+.scroll-btn.left {
+  left: -20px;
 }
 
-/* thin red divider */
+.scroll-btn.right {
+  right: -20px;
+}
+
+/* ---------- FOOTER (NEW LOGIC) ---------- */
+footer {
+  margin-top: 60px;
+}
+
+/* white / light footer area */
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* short red divider */
 .footer-divider {
   height: 1px;
   background: #ffaaaa;
-  margin: 20px 0 40px 0;
-}
-
-/* main footer area */
-.footer-content {
-  padding: 30px;
+  margin: 25px 0 45px 0;
 }
 
 /* footer grid */
@@ -161,13 +156,13 @@ footer {
 .footer-bottom {
   background: #444;
   color: white;
-  font-size: 12px;
 }
 
 .footer-bottom-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 15px 30px;
+  font-size: 12px;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -182,17 +177,6 @@ footer {
 }
 
 @media (max-width: 500px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   .product-grid {
     grid-template-columns: 1fr;
   }
@@ -225,6 +209,7 @@ footer {
 <div class="page">
 
   <h2 class="section-title">Featured Products</h2>
+
   <div class="product-grid">
     <img src="images/product1.jpg" alt="">
     <img src="images/product2.jpg" alt="">
@@ -233,6 +218,7 @@ footer {
   </div>
 
   <h2 class="section-title">More Products</h2>
+
   <div class="scroll-wrapper">
     <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
 
@@ -288,7 +274,10 @@ footer {
 function scrollProducts(direction) {
   const row = document.getElementById('productScroll');
   const scrollAmount = 320;
-  row.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  row.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
 }
 </script>
 

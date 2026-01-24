@@ -51,14 +51,6 @@ header {
   font-size: 28px;
   margin-bottom: 20px;
 }
-
-/* ---------- TOP ROW FEATURED IMAGES ---------- */
-#featuredScroll img {
-  width: 300px;      /* custom width */
-  height: 300px;     /* square height */
-  object-fit: cover; /* maintain image proportions without stretching */
-  border-radius: 6px;
-}
   
 /* ---------- CLICKABLE PRODUCT CARDS ---------- */
 .product-link {
@@ -102,6 +94,14 @@ header {
   overflow: hidden;
 }
 
+/* ---------- TOP ROW (FEATURED) OVERRIDES ---------- */
+#featuredScroll img {
+  width: 300px;        /* your custom width */
+  min-width: unset;   /* IMPORTANT: remove scroll-row min-width */
+  height: 300px;      /* square */
+  object-fit: cover;
+}
+  
 .scroll-row {
   display: flex;
   gap: 20px;

@@ -361,25 +361,45 @@ function scrollRow(button, dir) {
 </script>
   
 <script>
-function scrollProducts(direction) {
-  const row = document.getElementById('productScroll');
-  const scrollAmount = 300;
+function scrollRow(button, direction) {
+  const wrapper = button.closest('.scroll-wrapper');
+  const row = wrapper.querySelector('.scroll-row');
+  const scrollAmount = 320;
 
-  const maxScroll =
-    row.scrollWidth - row.clientWidth;
-
-  let targetScroll =
-    row.scrollLeft + direction * scrollAmount;
-
-  // Clamp scrolling so content never hides under arrows
-  targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-  row.scrollTo({
-    left: targetScroll,
+  row.scrollBy({
+    left: direction * scrollAmount,
     behavior: 'smooth'
   });
 }
+
+/* ---------- INFINITE SCROLL (NO AUTO-MOVE) ---------- */
+document.querySelectorAll('.infinite-row').forEach(row => {
+  const children = Array.from(row.children);
+
+  // Clone items on both ends
+  children.forEach(el => {
+    row.appendChild(el.cloneNode(true));
+    row.insertBefore(el.cloneNode(true), row.firstChild);
+  });
+
+  // Start centered
+  const itemWidth = children[0].offsetWidth + 20;
+  row.scrollLeft = itemWidth * children.length;
+
+  row.addEventListener('scroll', () => {
+    const maxScroll = itemWidth * children.length * 2;
+
+    if (row.scrollLeft <= itemWidth) {
+      row.scrollLeft += itemWidth * children.length;
+    }
+
+    if (row.scrollLeft >= maxScroll) {
+      row.scrollLeft -= itemWidth * children.length;
+    }
+  });
+});
 </script>
+
   
 </body>
 </html>

@@ -57,6 +57,7 @@ header {
   display: block;
   cursor: pointer;
   flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 .product-link img {
@@ -95,15 +96,17 @@ header {
 /* ---------- SCROLLING ROW ---------- */
 .scroll-wrapper {
   position: relative;
+  padding: 0 50px; /* space for arrows */
 }
 
 .scroll-row {
   display: flex;
-  align-items: flex-start;
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 10px 60px;
+  padding-bottom: 10px;
+  align-items: flex-start; /* top-align images */
+  scroll-snap-type: x mandatory;
 }
 
 .scroll-row::-webkit-scrollbar {
@@ -328,9 +331,19 @@ footer {
 <script>
 function scrollProducts(direction) {
   const row = document.getElementById('productScroll');
-  const scrollAmount = 320;
-  row.scrollBy({
-    left: direction * scrollAmount,
+  const scrollAmount = 300;
+
+  const maxScroll =
+    row.scrollWidth - row.clientWidth;
+
+  let targetScroll =
+    row.scrollLeft + direction * scrollAmount;
+
+  // Clamp scrolling so content never hides under arrows
+  targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+  row.scrollTo({
+    left: targetScroll,
     behavior: 'smooth'
   });
 }

@@ -90,15 +90,16 @@ header {
 /* ---------- SCROLLING ROW ---------- */
 .scroll-wrapper {
   position: relative;
-  padding: 0 60px;     /* arrow-safe zone */
+  padding: 0 50px;
   overflow: hidden;
 }
 
 .scroll-row {
   display: flex;
   gap: 20px;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
+  padding-bottom: 10px;
   align-items: flex-start;
 }
 
@@ -106,8 +107,11 @@ header {
   display: none;
 }
 
-.product-link {
-  flex-shrink: 0;
+.scroll-row img {
+  min-width: 280px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 /* ---------- ARROWS ---------- */
@@ -237,9 +241,9 @@ footer {
   <h2 class="section-title">Featured Products</h2>
 
 <div class="scroll-wrapper">
-  <div class="scroll-btn left" onclick="scrollRow(this, -1)">&#8249;</div>
+  <div class="scroll-btn left" onclick="scrollFeatured(-1)">&#8249;</div>
 
-  <div class="scroll-row infinite-row" id="productScroll">
+  <div class="scroll-row" id="featuredScroll">
     <a href="#" class="product-link">
       <img src="images/product1.jpg" alt="Product 1">
     </a>
@@ -254,15 +258,15 @@ footer {
     </a>
   </div>
 
-  <div class="scroll-btn right" onclick="scrollRow(this, 1)">&#8250;</div>
+  <div class="scroll-btn right" onclick="scrollFeatured(1)">&#8250;</div>
 </div>
 
   <h2 class="section-title">More Products</h2>
 
 <div class="scroll-wrapper">
-  <div class="scroll-btn left" onclick="scrollRow(this, -1)">&#8249;</div>
+  <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
 
-  <div class="scroll-row infinite-row" id="productScroll">
+  <div class="scroll-row" id="productScroll">
   <a href="#" class="product-link">
     <img src="https://i.ibb.co/ch2Wcr9F/Cookmania-HD-Cover.png" alt="Product 5">
   </a>
@@ -283,7 +287,7 @@ footer {
   </a>
 </div>
 
-  <div class="scroll-btn right" onclick="scrollRow(this, 1)">&#8250;</div>
+  <div class="scroll-btn right" onclick="scrollProducts(1)">&#8250;</div>
 </div>
 
 
@@ -325,81 +329,45 @@ footer {
 <!-- ========================================= -->
 
 <script>
-function makeInfinite(row) {
-  const items = Array.from(row.children);
-  const itemWidth = items[0].offsetWidth + 20;
-
-  // Clone items
-  items.forEach(item => {
-    row.appendChild(item.cloneNode(true));
-    row.insertBefore(item.cloneNode(true), row.firstChild);
-  });
-
-  // Center scroll
-  row.scrollLeft = itemWidth * items.length;
-
-  row.addEventListener('scroll', () => {
-    if (row.scrollLeft <= itemWidth) {
-      row.scrollLeft += itemWidth * items.length;
-    } else if (
-      row.scrollLeft >= itemWidth * (items.length * 2)
-    ) {
-      row.scrollLeft -= itemWidth * items.length;
-    }
-  });
-}
-
-document.querySelectorAll('.infinite-row').forEach(makeInfinite);
-
-function scrollRow(button, dir) {
-  const row = button.parentElement.querySelector('.scroll-row');
-  row.scrollBy({
-    left: dir * 300,
-    behavior: 'smooth'
-  });
-}
-</script>
-  
-<script>
-function scrollRow(button, direction) {
-  const wrapper = button.closest('.scroll-wrapper');
-  const row = wrapper.querySelector('.scroll-row');
+function scrollProducts(direction) {
+  const row = document.getElementById('productScroll');
   const scrollAmount = 320;
-
   row.scrollBy({
     left: direction * scrollAmount,
     behavior: 'smooth'
   });
 }
 
-/* ---------- INFINITE SCROLL (NO AUTO-MOVE) ---------- */
-document.querySelectorAll('.infinite-row').forEach(row => {
-  const children = Array.from(row.children);
-
-  // Clone items on both ends
-  children.forEach(el => {
-    row.appendChild(el.cloneNode(true));
-    row.insertBefore(el.cloneNode(true), row.firstChild);
+function scrollFeatured(direction) {
+  const row = document.getElementById('featuredScroll');
+  const scrollAmount = 320;
+  row.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
   });
-
-  // Start centered
-  const itemWidth = children[0].offsetWidth + 20;
-  row.scrollLeft = itemWidth * children.length;
-
-  row.addEventListener('scroll', () => {
-    const maxScroll = itemWidth * children.length * 2;
-
-    if (row.scrollLeft <= itemWidth) {
-      row.scrollLeft += itemWidth * children.length;
-    }
-
-    if (row.scrollLeft >= maxScroll) {
-      row.scrollLeft -= itemWidth * children.length;
-    }
-  });
-});
+}
 </script>
+  
+<script>
+function scrollProducts(direction) {
+  const row = document.getElementById('productScroll');
+  const scrollAmount = 300;
 
+  const maxScroll =
+    row.scrollWidth - row.clientWidth;
+
+  let targetScroll =
+    row.scrollLeft + direction * scrollAmount;
+
+  // Clamp scrolling so content never hides under arrows
+  targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+  row.scrollTo({
+    left: targetScroll,
+    behavior: 'smooth'
+  });
+}
+</script>
   
 </body>
 </html>

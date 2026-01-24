@@ -90,7 +90,8 @@ header {
 /* ---------- SCROLLING ROW ---------- */
 .scroll-wrapper {
   position: relative;
-  padding: 0 50px; /* space for arrows */
+  padding: 0 50px;
+  overflow: hidden;
 }
 
 .scroll-row {
@@ -99,8 +100,7 @@ header {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: 10px;
-  align-items: flex-start; /* top-align images */
-  scroll-snap-type: x mandatory;
+  align-items: flex-start;
 }
 
 .scroll-row::-webkit-scrollbar {

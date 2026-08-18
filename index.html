@@ -234,7 +234,7 @@ footer {
 <header>
   <div class="logo">
     <a href="index.html">
-      <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+      <img src="images/site/luketenn-logo.png" alt="LukeTenn Logo">
     </a>
   </div>
 
@@ -248,9 +248,22 @@ footer {
 
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-    <img src="https://i.ibb.co/s9Z1r75v/Card-Creator-Banner-Luke-Tenn-Website.png" alt="">
-    <img src="https://i.ibb.co/tT4zYsbP/Project-Chronogy-Banner-Luke-Tenn-Website.png" alt="">
-    <img src="https://i.ytimg.com/vi/jxqFPqm0AZg/hqdefault.jpg" alt="">
+
+    <img
+      src="images/home/card-creator-banner.png"
+      alt="Card Creator"
+    >
+
+    <img
+      src="images/home/chronogy-banner.png"
+      alt="Project Chronogy"
+    >
+
+    <img
+      src="images/home/hero-video.jpg"
+      alt="LukeTenn video"
+    >
+
   </div>
 </section>
 
@@ -261,13 +274,15 @@ footer {
 
   <div class="carousel">
     <div class="arrow">&#8249;</div>
+
     <div class="carousel-images">
-      <img src="images/item1.jpg" alt="">
-      <img src="images/item2.jpg" alt="">
-      <img src="images/item3.jpg" alt="">
-      <img src="images/item4.jpg" alt="">
-      <img src="images/item5.jpg" alt="">
+      <img src="images/home-carousel/item1.jpg" alt="">
+      <img src="images/home-carousel/item2.jpg" alt="">
+      <img src="images/home-carousel/item3.jpg" alt="">
+      <img src="images/home-carousel/item4.jpg" alt="">
+      <img src="images/home-carousel/item5.jpg" alt="">
     </div>
+
     <div class="arrow">&#8250;</div>
   </div>
 </section>
@@ -275,28 +290,34 @@ footer {
 <!-- ===================================================================== -->
 <!-- ============================ FOOTER ================================= -->
 <!-- ===================================================================== -->
+
 <footer>
   <div class="footer-content">
 
     <div class="footer-divider"></div>
 
     <div class="footer-grid">
+
       <div>
         <h3>Contact Us</h3>
         <p>Contact<br>Feedback</p>
       </div>
+
       <div>
         <h3>Our Partners</h3>
         <p>Creamy's Wonderland</p>
       </div>
+
       <div>
         <h3>About Us</h3>
         <p>MRB</p>
       </div>
+
       <div>
         <h3>Follow Us</h3>
         <p>YouTube<br>X (Twitter)</p>
       </div>
+
     </div>
 
   </div>
@@ -307,6 +328,7 @@ footer {
     </div>
   </div>
 </footer>
+
 <!-- ========================== FOOTER END =============================== -->
 
 <script>
@@ -314,60 +336,91 @@ footer {
 
 const heroTrack = document.getElementById('heroTrack');
 let slides = heroTrack.querySelectorAll('img');
+
 const clone = slides[0].cloneNode(true);
 heroTrack.appendChild(clone);
+
 slides = heroTrack.querySelectorAll('img');
 
 let index = 0;
 const slideDuration = 5000;
 const transitionTime = 1000;
+
 let timer = null;
 let startTime = null;
 let remainingTime = slideDuration;
 
 function setHeroSizes() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
+
   heroTrack.style.width = `${slides.length * heroWidth}px`;
-  slides.forEach(s => s.style.width = `${heroWidth}px`);
-  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
+
+  slides.forEach(s => {
+    s.style.width = `${heroWidth}px`;
+  });
+
+  heroTrack.style.transform =
+    `translateX(-${index * heroWidth}px)`;
 }
 
 setHeroSizes();
+
 window.addEventListener('resize', setHeroSizes);
 
 function nextHero() {
   const heroWidth = document.querySelector('.hero').offsetWidth;
+
   index++;
-  heroTrack.style.transition = `transform ${transitionTime}ms ease-in-out`;
-  heroTrack.style.transform = `translateX(-${index * heroWidth}px)`;
+
+  heroTrack.style.transition =
+    `transform ${transitionTime}ms ease-in-out`;
+
+  heroTrack.style.transform =
+    `translateX(-${index * heroWidth}px)`;
 
   if (index === slides.length - 1) {
+
     setTimeout(() => {
+
       heroTrack.style.transition = 'none';
+
       index = 0;
+
       heroTrack.style.transform = 'translateX(0)';
+
     }, transitionTime);
   }
 
   startTime = Date.now();
+
   timer = setTimeout(nextHero, slideDuration);
 }
 
 function startSlider(time = remainingTime) {
   startTime = Date.now();
+
   timer = setTimeout(nextHero, time);
 }
 
 function stopSlider() {
   clearTimeout(timer);
-  remainingTime = Math.max(slideDuration - (Date.now() - startTime), 0);
+
+  remainingTime =
+    Math.max(
+      slideDuration - (Date.now() - startTime),
+      0
+    );
 }
 
 startSlider();
 
 const heroSection = document.querySelector('.hero');
+
 heroSection.addEventListener('mouseenter', stopSlider);
-heroSection.addEventListener('mouseleave', () => startSlider(remainingTime));
+
+heroSection.addEventListener('mouseleave', () => {
+  startSlider(remainingTime);
+});
 </script>
 
 </body>

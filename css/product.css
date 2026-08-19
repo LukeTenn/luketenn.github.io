@@ -1,0 +1,345 @@
+/* ===================================================================== */
+/* ======================= PRODUCT PAGE CSS ============================= */
+/* ===================================================================== */
+
+/* ---------- PRODUCT HERO ---------- */
+
+.product-hero {
+  background: #e8e8e8;
+  padding: 45px 30px 35px;
+}
+
+.product-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 45px;
+}
+
+/* Product cover/image */
+
+.product-cover {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Product information */
+
+.product-info {
+  flex: 1;
+  padding-top: 0;
+}
+
+.product-info h1 {
+  font-size: 42px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.product-description {
+  font-size: 17px;
+  line-height: 1.4;
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.product-price {
+  font-size: 22px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.product-media {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* ---------- GENERAL PRODUCT BUTTON ---------- */
+
+.product-button {
+  display: inline-block;
+  background: #999;
+  color: black;
+  padding: 10px 18px;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.product-button:hover {
+  background: #aaa;
+}
+
+.product-button:active {
+  transform: translateY(1px);
+}
+
+
+/* ---------- PRODUCT SECTION ---------- */
+
+.product-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 30px;
+}
+
+.product-section h2 {
+  font-size: 42px;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.product-section p {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+
+/* ---------- SECTION DIVIDER ---------- */
+
+.product-divider {
+  max-width: 900px;
+  height: 1px;
+  background: #ffaaaa;
+  margin: 0 auto;
+}
+
+
+/* ---------- CENTERED WEBSITE SECTION ---------- */
+
+.website-section {
+  text-align: center;
+  padding: 15px 30px 50px;
+}
+
+.website-section h2 {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.website-section p {
+  max-width: 500px;
+  margin: 0 auto 25px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+
+/* ---------- TEXT + VIDEO SECTION ---------- */
+
+.promo-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 35px 30px 55px;
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.promo-text {
+  flex: 1;
+}
+
+.promo-text h2 {
+  font-size: 42px;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.promo-text p {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.promo-video {
+  width: 360px;
+  height: 200px;
+  background: #999;
+  flex-shrink: 0;
+}
+
+
+/* ---------- TECHNICAL SPECIFICATIONS ---------- */
+
+.product-specs {
+  background: #e8e8e8;
+  padding: 35px 30px 40px;
+}
+
+.product-specs-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.product-spec {
+  display: flex;
+  align-items: baseline;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff1f1f;
+  margin-bottom: 16px;
+}
+
+/*
+  The dotted line expands to fill the space between
+  the specification name and its value.
+*/
+
+.product-spec-name {
+  white-space: nowrap;
+}
+
+.product-spec-dots {
+  flex: 1;
+  border-bottom: 3px dotted #ff1f1f;
+  margin: 0 8px;
+  min-width: 20px;
+}
+
+.product-spec-value {
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+/* ---------- FINAL DOWNLOAD ---------- */
+
+.product-download {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.product-download .product-button {
+  min-width: 225px;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+  .product-hero-inner {
+    gap: 30px;
+  }
+
+  .product-cover {
+    width: 250px;
+    height: 335px;
+  }
+
+  .product-info h1 {
+    font-size: 36px;
+  }
+
+  .product-section h2,
+  .website-section h2,
+  .promo-text h2 {
+    font-size: 36px;
+  }
+
+  .promo-section {
+    gap: 30px;
+  }
+
+  .promo-video {
+    width: 320px;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .product-hero-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-cover {
+    width: 260px;
+    height: 350px;
+  }
+
+  .product-info {
+    width: 100%;
+  }
+
+  .product-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .promo-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .promo-text {
+    width: 100%;
+  }
+
+  .promo-video {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .product-spec {
+    font-size: 15px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .product-hero {
+    padding: 30px 20px;
+  }
+
+  .product-section {
+    padding: 35px 20px;
+  }
+
+  .website-section {
+    padding: 15px 20px 40px;
+  }
+
+  .promo-section {
+    padding: 30px 20px 45px;
+  }
+
+  .product-cover {
+    width: 220px;
+    height: 295px;
+  }
+
+  .product-info h1,
+  .product-section h2,
+  .website-section h2,
+  .promo-text h2 {
+    font-size: 30px;
+  }
+
+  .product-description,
+  .product-section p,
+  .website-section p,
+  .promo-text p {
+    font-size: 15px;
+  }
+
+  .product-specs {
+    padding: 30px 20px;
+  }
+
+  .product-spec {
+    font-size: 13px;
+  }
+
+  .product-spec-dots {
+    border-bottom-width: 2px;
+  }
+}

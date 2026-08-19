@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+
+<style>
+/* ---------- RESET ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  background: #ff1f1f;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-buttons a {
+  background: #ffe6cc;
+  border-radius: 20px;
+  padding: 8px 18px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-buttons a.active {
+  background: white;
+  color: #ff1f1f;
+}
+
+/* ---------- PAGE ---------- */
+.page {
+  padding: 40px 30px;
+}
+
+.section-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+  
+/* ---------- CLICKABLE PRODUCT CARDS ---------- */
+.product-link {
+  display: block;
+  cursor: pointer;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.product-link img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-link:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.product-link:active img {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+  
+/* ---------- STATIC GRID ---------- */
+
+.product-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- SCROLLING ROW ---------- */
+.scroll-wrapper {
+  position: relative;
+  padding: 0 50px;
+  overflow: hidden;
+}
+
+/* ---------- TOP ROW (FEATURED) OVERRIDES ---------- */
+#featuredScroll img {
+  width: 173px;        /* your custom width */
+  min-width: unset;   /* IMPORTANT: remove scroll-row min-width */
+  height: 260px;      /* square */
+  object-fit: cover;
+}
+  
+.scroll-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  align-items: flex-start;
+}
+
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-row img {
+  min-width: 280px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- ARROWS ---------- */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #eee;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+
+.scroll-btn.right {
+  right: 10px;
+}
+
+/* ===================================================================== */
+/* ========================== FOOTER (COPYABLE) ========================= */
+/* ===================================================================== */
+
+footer {
+  background: white;
+  color: black;
+  font-size: 12px;
+}
+
+/* short red divider */
+.footer-divider {
+  height: 1px;
+  background: #ffaaaa;
+  margin: 20px 0 40px 0;
+}
+
+/* main white footer area */
+.footer-content {
+  padding: 30px;
+}
+
+/* footer grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-grid h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-grid p {
+  font-size: 12px;
+}
+
+/* bottom gray bar */
+.footer-bottom {
+  background: #444;
+  color: white;
+  font-size: 12px;
+}
+
+.footer-bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+/* ===================================================================== */
+/* ======================== FOOTER END ================================= */
+/* ===================================================================== */
+  
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="https://i.ibb.co/Jj5xw5Dh/Luke-Tenn-Logo-2025-White.png" alt="LukeTenn Logo">
+    </a>
+  </div>
+
+  <nav class="nav-buttons">
+    <a href="products.html" class="active">Products</a>
+    <a href="gallery.html">LukeTenn Gallery</a>
+    <a href="services.html">Services</a>
+  </nav>
+</header>
+<!-- ========================================= -->
+
+<div class="page">
+
+  <h2 class="section-title">Games</h2>
+
+<div class="scroll-wrapper">
+  <div class="scroll-btn left" onclick="scrollFeatured(-1)">&#8249;</div>
+
+  <div class="scroll-row" id="featuredScroll">
+    <a href="products/chronogy" class="product-link">
+      <img src="https://i.ibb.co/nqf5QrH4/Project-Chronogy-Box-Art.png" alt="Product 1">
+    </a>
+  </div>
+
+  <div class="scroll-btn right" onclick="scrollFeatured(1)">&#8250;</div>
+</div>
+
+  <h2 class="section-title">Movies</h2>
+
+<div class="scroll-wrapper">
+  <div class="scroll-btn left" onclick="scrollProducts(-1)">&#8249;</div>
+
+  <div class="scroll-row" id="productScroll">
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/ch2Wcr9F/Cookmania-HD-Cover.png" alt="Product 5">
+  </a>
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/mr0cDdgF/The-War-4-Cover.png" alt="Product 6">
+  </a>
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/RkbdnC9z/Hobo-Law-Cover.png" alt="Product 7">
+  </a>
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/fd7Bkc1v/The-War-Cover.png" alt="Product 8">
+  </a>
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/Bkbw7p9/The-War-2-Cover.jpg">
+  </a>
+  <a href="#" class="product-link">
+    <img src="https://i.ibb.co/0jjMDTj1/The-War-3-Cover.jpg">
+  </a>
+</div>
+
+  <div class="scroll-btn right" onclick="scrollProducts(1)">&#8250;</div>
+</div>
+
+  <h2 class="section-title">Shows</h2>
+
+<div class="scroll-wrapper">
+  <div class="scroll-btn left" onclick="scrollShows(-1)">&#8249;</div>
+
+  <div class="scroll-row" id="showScroll">
+    <a href="#" class="product-link">
+      <img src="https://i.ibb.co/jZDMN3xD/Ottana-Show-Cover-FINAL.png/300x260?text=Show+1" alt="Show 1">
+    </a>
+  </div>
+
+  <div class="scroll-btn right" onclick="scrollShows(1)">&#8250;</div>
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-content">
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-grid">
+      <div>
+        <h3>Contact Us</h3>
+        <p>Contact<br>Feedback</p>
+      </div>
+      <div>
+        <h3>Our Partners</h3>
+        <p>Creamy's Wonderland</p>
+      </div>
+      <div>
+        <h3>About Us</h3>
+        <p>MRB</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>YouTube<br>X (Twitter)</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      ©2025 LukeTenn. ©2016 – 2025
+    </div>
+  </div>
+</footer>
+<!-- ========================================= -->
+
+<script>
+function scrollProducts(direction) {
+  const row = document.getElementById('productScroll');
+  const scrollAmount = 320;
+  row.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+function scrollFeatured(direction) {
+  const row = document.getElementById('featuredScroll');
+  const scrollAmount = 320;
+  row.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+</script>
+  
+<script>
+function scrollProducts(direction) {
+  const row = document.getElementById('productScroll');
+  const scrollAmount = 300;
+
+  const maxScroll =
+    row.scrollWidth - row.clientWidth;
+
+  let targetScroll =
+    row.scrollLeft + direction * scrollAmount;
+
+  // Clamp scrolling so content never hides under arrows
+  targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+  row.scrollTo({
+    left: targetScroll,
+    behavior: 'smooth'
+  });
+}
+</script>
+  
+</body>
+</html>

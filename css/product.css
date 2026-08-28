@@ -2,7 +2,19 @@
 /* ======================= PRODUCT PAGE CSS ============================= */
 /* ===================================================================== */
 
-/* ---------- PRODUCT HERO ---------- */
+/*
+  This stylesheet is for individual product pages.
+
+  Example:
+  /products/chronogy/index.html
+
+  It is independent from the Products listing page.
+*/
+
+
+/* ===================================================================== */
+/* ========================== PRODUCT HERO ============================== */
+/* ===================================================================== */
 
 .product-hero {
   background: #e8e8e8;
@@ -12,21 +24,27 @@
 .product-hero-inner {
   max-width: 1100px;
   margin: 0 auto;
+
   display: flex;
   align-items: flex-start;
   gap: 45px;
 }
 
-/* Product cover/image */
+
+/* ---------- PRODUCT COVER ---------- */
 
 .product-cover {
   width: 300px;
   height: 400px;
+
   object-fit: cover;
   flex-shrink: 0;
+
+  border-radius: 6px;
 }
 
-/* Product information */
+
+/* ---------- PRODUCT INFORMATION ---------- */
 
 .product-info {
   flex: 1;
@@ -36,39 +54,61 @@
 .product-info h1 {
   font-size: 42px;
   line-height: 1.1;
+
   margin-bottom: 12px;
 }
 
 .product-description {
   font-size: 17px;
   line-height: 1.4;
+
   max-width: 600px;
   margin-bottom: 28px;
 }
 
+
+/* ---------- PRICE ---------- */
+
 .product-price {
   font-size: 22px;
   color: #777;
+
   margin-bottom: 4px;
 }
+
+
+/* ---------- MEDIA TYPE ---------- */
 
 .product-media {
   font-size: 16px;
   color: #666;
+
   margin-bottom: 25px;
 }
 
-/* ---------- GENERAL PRODUCT BUTTON ---------- */
+
+/* ===================================================================== */
+/* ========================== PRODUCT BUTTON ============================ */
+/* ===================================================================== */
 
 .product-button {
   display: inline-block;
+
   background: #999;
   color: black;
+
   padding: 10px 18px;
+
   font-size: 18px;
   text-decoration: none;
+
+  border-radius: 4px;
+
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
 .product-button:hover {
@@ -80,10 +120,13 @@
 }
 
 
-/* ---------- PRODUCT SECTION ---------- */
+/* ===================================================================== */
+/* ======================== GENERAL SECTION ============================= */
+/* ===================================================================== */
 
 .product-section {
   max-width: 1100px;
+
   margin: 0 auto;
   padding: 45px 30px;
 }
@@ -91,6 +134,7 @@
 .product-section h2 {
   font-size: 42px;
   line-height: 1.1;
+
   margin-bottom: 18px;
 }
 
@@ -100,46 +144,65 @@
 }
 
 
-/* ---------- SECTION DIVIDER ---------- */
+/* ===================================================================== */
+/* ========================== DIVIDER ================================== */
+/* ===================================================================== */
 
 .product-divider {
   max-width: 900px;
+
   height: 1px;
+
   background: #ffaaaa;
+
   margin: 0 auto;
 }
 
 
-/* ---------- CENTERED WEBSITE SECTION ---------- */
+/* ===================================================================== */
+/* ======================== WEBSITE SECTION ============================= */
+/* ===================================================================== */
 
 .website-section {
   text-align: center;
+
   padding: 15px 30px 50px;
 }
 
 .website-section h2 {
   font-size: 42px;
+
   margin-bottom: 18px;
 }
 
 .website-section p {
   max-width: 500px;
+
   margin: 0 auto 25px;
+
   font-size: 17px;
   line-height: 1.45;
 }
 
 
-/* ---------- TEXT + VIDEO SECTION ---------- */
+/* ===================================================================== */
+/* ========================= PROMO SECTION ============================== */
+/* ===================================================================== */
 
 .promo-section {
   max-width: 1100px;
+
   margin: 0 auto;
   padding: 35px 30px 55px;
+
   display: flex;
   align-items: center;
+
   gap: 45px;
 }
+
+
+/* ---------- PROMO TEXT ---------- */
 
 .promo-text {
   flex: 1;
@@ -148,6 +211,7 @@
 .promo-text h2 {
   font-size: 42px;
   line-height: 1.1;
+
   margin-bottom: 18px;
 }
 
@@ -156,50 +220,74 @@
   line-height: 1.45;
 }
 
+
+/* ---------- PROMO VIDEO / MEDIA PLACEHOLDER ---------- */
+
 .promo-video {
   width: 360px;
   height: 200px;
+
   background: #999;
+
   flex-shrink: 0;
+
+  border-radius: 4px;
 }
 
 
-/* ---------- TECHNICAL SPECIFICATIONS ---------- */
+/* ===================================================================== */
+/* ====================== TECHNICAL SPECIFICATIONS ====================== */
+/* ===================================================================== */
 
 .product-specs {
   background: #e8e8e8;
+
   padding: 35px 30px 40px;
 }
 
 .product-specs-inner {
   max-width: 900px;
+
   margin: 0 auto;
 }
+
+
+/* ---------- INDIVIDUAL SPECIFICATION ---------- */
 
 .product-spec {
   display: flex;
   align-items: baseline;
+
   font-size: 18px;
   font-weight: bold;
+
   color: #ff1f1f;
+
   margin-bottom: 16px;
 }
 
-/*
-  The dotted line expands to fill the space between
-  the specification name and its value.
-*/
+
+/* ---------- SPECIFICATION NAME ---------- */
 
 .product-spec-name {
   white-space: nowrap;
 }
 
+
+/* ---------- DOTTED LINE ---------- */
+
 .product-spec-dots {
   flex: 1;
+
   border-bottom: 3px dotted #ff1f1f;
+
   margin: 0 8px;
+
   min-width: 20px;
 }
+
+
+/* ---------- SPECIFICATION VALUE ---------- */
 
 .product-spec-value {
   text-align: right;
@@ -207,10 +295,13 @@
 }
 
 
-/* ---------- FINAL DOWNLOAD ---------- */
+/* ===================================================================== */
+/* ========================= FINAL DOWNLOAD ============================= */
+/* ===================================================================== */
 
 .product-download {
   text-align: center;
+
   margin-top: 30px;
 }
 
@@ -219,7 +310,9 @@
 }
 
 
-/* ---------- RESPONSIVE ---------- */
+/* ===================================================================== */
+/* =========================== RESPONSIVE =============================== */
+/* ===================================================================== */
 
 @media (max-width: 900px) {
 
@@ -252,11 +345,16 @@
 }
 
 
+/* ===================================================================== */
+/* =========================== TABLET / MOBILE ========================== */
+/* ===================================================================== */
+
 @media (max-width: 700px) {
 
   .product-hero-inner {
     flex-direction: column;
     align-items: center;
+
     text-align: center;
   }
 
@@ -276,6 +374,7 @@
 
   .promo-section {
     flex-direction: column;
+
     text-align: center;
   }
 
@@ -293,6 +392,10 @@
   }
 }
 
+
+/* ===================================================================== */
+/* ============================= PHONE ================================= */
+/* ===================================================================== */
 
 @media (max-width: 500px) {
 
@@ -343,3 +446,8 @@
     border-bottom-width: 2px;
   }
 }
+
+
+/* ===================================================================== */
+/* ========================= PRODUCT PAGE END =========================== */
+/* ===================================================================== */

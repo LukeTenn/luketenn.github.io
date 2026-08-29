@@ -1,0 +1,155 @@
+/* ===================================================================== */
+/* ========================== MAIN SITE CSS ============================= */
+/* ===================================================================== */
+
+/* ---------- RESET ---------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+/* ===================================================================== */
+/* ============================= HEADER ================================= */
+/* ===================================================================== */
+
+header {
+  background: #ff1f1f;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo img {
+  height: 40px;
+  object-fit: contain;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.nav-buttons a {
+  background: #ffe6cc;
+  border-radius: 20px;
+  padding: 8px 18px;
+  margin-left: 10px;
+
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+
+  display: inline-block;
+
+  transition: background 0.15s ease;
+}
+
+.nav-buttons a:hover {
+  background: #ffd4a3;
+}
+
+.nav-buttons a.active {
+  background: white;
+  color: #ff1f1f;
+}
+
+
+/* ===================================================================== */
+/* ============================= FOOTER ================================= */
+/* ===================================================================== */
+
+footer {
+  background: white;
+  color: black;
+  font-size: 12px;
+}
+
+
+/* ---------- FOOTER DIVIDER ---------- */
+
+.footer-divider {
+  height: 1px;
+  background: #ffaaaa;
+  margin: 20px 0 40px 0;
+}
+
+
+/* ---------- MAIN FOOTER AREA ---------- */
+
+.footer-content {
+  padding: 30px;
+}
+
+
+/* ---------- FOOTER GRID ---------- */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  text-align: center;
+}
+
+.footer-grid h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-grid p {
+  font-size: 12px;
+}
+
+
+/* ---------- BOTTOM GRAY BAR ---------- */
+
+.footer-bottom {
+  background: #444;
+  color: white;
+  font-size: 12px;
+}
+
+.footer-bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+
+/* ===================================================================== */
+/* =========================== RESPONSIVE =============================== */
+/* ===================================================================== */
+
+@media (max-width: 900px) {
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
